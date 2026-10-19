@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Bill Calculator</title>
+</head>
+<body>
+
+    <h2>Shopping Bill Calculator</h2>
+
+    <p>Product Price: Rs. 250</p>
+
+    <label for="quantity">Enter Quantity:</label>
+    <input type="number" id="quantity" placeholder="Enter quantity">
+
+    <button id="calculateBtn">Calculate Bill</button>
+
+    <p id="result"></p>
+
+    <script>
+        let price = 250;
+
+        document.getElementById("calculateBtn")
+            .addEventListener("click", function() {
+
+                let quantityInput = document.getElementById("quantity").value;
+                let result = document.getElementById("result");
+
+                // Check empty or invalid quantity
+                if (quantityInput.trim() === "" || Number(quantityInput) <= 0) {
+                    result.innerHTML = "Please enter a valid quantity!";
+                    console.log("Error: Invalid quantity");
+                    return;
+                }
+
+                // Convert quantity into number
+                let quantity = Number(quantityInput);
+
+                // Calculate total bill
+                let total = price * quantity;
+                let discount = 0;
+
+                // Apply 10% discount if total is Rs. 1000 or more
+                if (total >= 1000) {
+                    discount = total * 0.10;
+                }
+
+                // Calculate final bill
+                let finalBill = total - discount;
+
+                // Show result on webpage
+                result.innerHTML =
+                    "Quantity: " + quantity + "<br>" +
+                    "Total Bill: Rs. " + total + "<br>" +
+                    "Discount: Rs. " + discount + "<br>" +
+                    "Final Bill: Rs. " + finalBill;
+
+                // Show bill in console
+                console.log("Quantity:", quantity);
+                console.log("Total Bill: Rs.", total);
+                console.log("Discount: Rs.", discount);
+                console.log("Final Bill: Rs.", finalBill);
+            });
+    </script>
+
+</body>
+</html>
